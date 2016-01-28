@@ -10,14 +10,65 @@ Test assertion helpers for use with React's shallowRender test utils.
 npm install skin-deep
 ```
 
+## Important Changes
+
+### 0.14
+
+Breaking Change: Prior to version 0.14, text() normalisation incorrectly added spaces between children. This was technically a bug, but upgrading will break any tests which relied on the old behaviour.
+
 ## Usage
 
 > TODO
 
 For now, see [the tests](test/test.js).
 
+Some people have been helpful enough to write some blog posts about skin deep, which you may find useful.
+
+ * [Unit Testing React components without a DOM](http://simonsmith.io/unit-testing-react-components-without-a-dom/)
+ * [React Testing with Shallow Rendering and Skin Deep](http://willcodefor.beer/react-testing-with-shallow-rendering-and-skin-deep/)
+
+You can also consult the [documentation for the upcoming Version 1.0](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme), which is mostly accurate for the current version.
+
+## Troubleshooting
+
+### Errors when bundling
+
+This lib currently supports both React 0.13 and React 0.14. If you are using a bundling tool for your test suite this will cause problems. You will need to add config to ignore the React internals for the version you are not using:
+
+####
+
+```js
+// React 0.14 & Webpack
+plugins: [
+  new webpack.IgnorePlugin(/ReactContext/),
+]
+
+// React 0.13 & Webpack
+plugins: [
+  new webpack.IgnorePlugin(/react-addons|react-dom/),
+]
+
+// React 0.14 & Browserify
+bundle.exclude('react/lib/ReactContext');
+
+// React 0.13 & Browserify
+bundle.exclude('react-dom/server');
+bundle.exclude('react-addons-test-utils');
+```
+
+```sh
+// React 0.14 & jspm
+jspm install npm:skin-deep -o "{map: {'react/lib/ReactContext': '@empty'}}"
+
+// React 0.13 & jspm
+jspm install npm:skin-deep -o "{map: {'react-dom/server': '@empty'
+                                      'react-addons-test-utils': '@empty'}}"
+```
+
 # Docs
 
 > TODO
 
 For now, see [the tests](test/test.js).
+
+You can also consult the [documentation for the upcoming Version 1.0](https://github.com/glenjamin/skin-deep/tree/one-point-oh#readme), which is mostly accurate for the current version.

@@ -5,7 +5,8 @@
   "main": "skin-deep.js",
   "scripts": {
     "test": "mocha",
-    "travis": "istanbul cover _mocha --"
+    "lint": "eslint . --max-warnings 0",
+    "travis": "npm run lint && istanbul cover _mocha --"
   },
   "repository": {
     "type": "git",
@@ -22,10 +23,14 @@
     "object-assign": "^4.0.1"
   },
   "devDependencies": {
-    "chai": "^2.3.0",
+    "chai": "^3.4.0",
     "coveralls": "^2.11.2",
-    "istanbul": "^0.3.14",
+    "eslint": "^1.10.3",
+    "istanbul": "^0.4.0",
     "mocha": "^2.2.5",
-    "react": "^0.14.0-beta3"
+    "react": "^0.14.0",
+    "react-addons-create-fragment": "^0.14.0",
+    "react-addons-test-utils": "^0.14.0",
+    "react-dom": "^0.14.0"
   }
 }
