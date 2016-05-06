@@ -4,12 +4,7 @@ var objectAssign = require('object-assign');
 var React = require('react');
 var versionNumber = Number(React.version.substring(0, 4));
 
-var TestUtils;
-if (versionNumber >= 0.13) {
-  TestUtils = require('react/addons').addons.TestUtils;
-} else {
-  TestUtils = require('react-addons-test-utils');
-}
+var TestUtils = require('react-addons-test-utils');
 
 function renderToStaticMarkup(element) {
   if (versionNumber >= 0.13) {
